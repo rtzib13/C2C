@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero hero-mockup">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <p class="hero-pill">Professional Cleaning Services</p>
+    <h1 class="gold-script shimmer">Cummings2Clean</h1>
+    <h2 class="hero-title">Professional Cleaning<br><span>Services You Can Trust</span></h2>
+    <p class="hero-copy">Transform your residential or commercial space with our expert cleaning services. Quality, reliability, and attention to detail in every clean.</p>
+    <div class="hero-actions">
+      <a class="button hero-cta ripple" href="{% url 'contact' %}">Get Free Quote</a>
+      <a class="button hero-phone ripple" href="tel:+16623085118">(662) 308-5118</a>
+    </div>
+  </div>
+</section>
+
+<section class="services-preview">
+  <div class="container section-title-wrap">
+    <h2>Our Services</h2>
+    <p>Tailored cleaning solutions for every need</p>
+  </div>
+
+  <div class="container feature-grid">
+    <article class="feature-card service-card">
+      <div class="icon icon--pink" aria-hidden="true">
+        <!-- home icon -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 10.5L12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10.5z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Residential Cleaning</h3>
+      <p>Keep your home pristine with our comprehensive residential cleaning services.</p>
+      <ul class="check-list">
+        <li>Regular house cleaning</li>
+        <li>Deep cleaning</li>
+        <li>Move-in / move-out cleaning</li>
+        <li>Post-construction cleanup</li>
+      </ul>
+    </article>
+
+    <article class="feature-card service-card">
+      <div class="icon icon--purple" aria-hidden="true">
+        <!-- building icon -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 21h18M7 21V9a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 7v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Commercial Cleaning</h3>
+      <p>Professional cleaning solutions for offices, retail spaces, and more.</p>
+      <ul class="check-list">
+        <li>Office buildings</li>
+        <li>Retail spaces</li>
+        <li>Medical facilities</li>
+        <li>Janitorial services</li>
+      </ul>
+    </article>
+  </div>
+</section>
+{% endblock %}

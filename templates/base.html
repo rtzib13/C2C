@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ page_title|default:"Cummings 2 Clean" }}{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand-tile" href="{% url 'home' %}" aria-label="Cummings 2 Clean home">
+      <img class="site-logo" src="{% static 'images/logo.png' %}" alt="Cummings 2 Clean logo">
+    </a>
+    <div class="container nav-shell">
+      <nav class="nav-links">
+        <a href="{% url 'services' %}">Services</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'careers' %}">Careers</a>
+        <a href="{% url 'contact' %}">Contact</a>
+      </nav>
+      <a class="button nav-cta ripple" href="{% url 'contact' %}">Get a Quote</a>
+    </div>
+  </header>
+
+  <main>
+    {% if messages %}
+      <section class="container message-stack">
+        {% for message in messages %}
+          <div class="message message-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </section>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Cummings 2 Clean</h3>
+        <p>Premium residential and commercial cleaning with dependable service and a polished finish.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="{% url 'services' %}">Services</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'careers' %}">Careers</a>
+        <a href="{% url 'contact' %}">Contact</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Phone: <a href="tel:+16623085118">(662) 308-5118</a></p>
+        <p>Email: <a href="mailto:Cummings2Clean@gmail.com">Cummings2Clean@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="{% static 'js/hero.js' %}"></script>
+  <script src="{% static 'js/ui.js' %}"></script>
+</body>
+</html>

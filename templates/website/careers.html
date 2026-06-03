@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container page-intro">
+  <p class="eyebrow">Careers</p>
+  <h1>Join the Cummings 2 Clean Team</h1>
+  <p>We are hiring dependable professionals for residential and commercial cleaning roles. Submit your application below and our team will contact qualified candidates.</p>
+</section>
+
+<section class="container form-shell">
+  <form method="post" class="quote-form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form-grid">
+      <label>
+        <span>First name</span>
+        {{ form.first_name }}
+        {{ form.first_name.errors }}
+      </label>
+      <label>
+        <span>Last name</span>
+        {{ form.last_name }}
+        {{ form.last_name.errors }}
+      </label>
+      <label>
+        <span>Email</span>
+        {{ form.email }}
+        {{ form.email.errors }}
+      </label>
+      <label>
+        <span>Phone</span>
+        {{ form.phone }}
+        {{ form.phone.errors }}
+      </label>
+      <label class="wide">
+        <span>Position applying for</span>
+        {{ form.position }}
+        {{ form.position.errors }}
+      </label>
+      <label class="wide">
+        <span>Previous experience</span>
+        {{ form.previous_experience }}
+        {{ form.previous_experience.errors }}
+      </label>
+      <label class="wide">
+        <span>Why do you want to join our team?</span>
+        {{ form.motivation }}
+        {{ form.motivation.errors }}
+      </label>
+      <label class="wide checkbox-row">
+        {{ form.flexible_hours }}
+        <span>I can work flexible hours, including weekends if needed.</span>
+      </label>
+    </div>
+    <button class="button button-primary" type="submit">Submit Application</button>
+  </form>
+</section>
+
+<section class="container benefit-grid">
+  <article class="feature-card">
+    <h3>Competitive Pay</h3>
+    <p>We value reliable work and reward quality service with fair compensation.</p>
+  </article>
+  <article class="feature-card">
+    <h3>Flexible Scheduling</h3>
+    <p>Part-time and full-time opportunities are available depending on demand.</p>
+  </article>
+  <article class="feature-card">
+    <h3>Supportive Team</h3>
+    <p>Work with a team committed to professionalism, trust, and service quality.</p>
+  </article>
+  <article class="feature-card">
+    <h3>Training & Growth</h3>
+    <p>We provide on-the-job training and opportunities for advancement so you can grow your skills and career with us.</p>
+  </article>
+</section>
+{% endblock %}

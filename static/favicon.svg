@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Cummings 2 Clean favicon">
+  <defs>
+    <linearGradient id="c2c-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f13ca5"/>
+      <stop offset="100%" stop-color="#4f8dff"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0a1537"/>
+  <path d="M20 42h20a6 6 0 0 0 6-6V24a6 6 0 0 0-6-6H20a6 6 0 0 0-6 6v12a6 6 0 0 0 6 6Zm2-18h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H22a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2Z" fill="url(#c2c-grad)"/>
+  <circle cx="22" cy="45" r="3" fill="#d7e6ff"/>
+  <circle cx="40" cy="45" r="3" fill="#d7e6ff"/>
+</svg>

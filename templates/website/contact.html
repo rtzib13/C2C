@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container page-intro">
+  <p class="eyebrow">Contact</p>
+  <h1>Tell us what needs cleaning and we’ll get back to you.</h1>
+  <p>Use the form below to request an estimate. You can also call (662) 308-5118 or email Cummings2Clean@gmail.com.</p>
+</section>
+
+<section class="container form-shell">
+  <form method="post" class="quote-form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form-grid">
+      <label>
+        <span>Full name</span>
+        {{ form.full_name }}
+        {{ form.full_name.errors }}
+      </label>
+      <label>
+        <span>Email</span>
+        {{ form.email }}
+        {{ form.email.errors }}
+      </label>
+      <label>
+        <span>Phone</span>
+        {{ form.phone }}
+        {{ form.phone.errors }}
+      </label>
+      <label>
+        <span>Service type</span>
+        {{ form.service_type }}
+        {{ form.service_type.errors }}
+      </label>
+      <label class="wide">
+        <span>Address</span>
+        {{ form.address }}
+        {{ form.address.errors }}
+      </label>
+      <label>
+        <span>Preferred date</span>
+        {{ form.preferred_date }}
+        {{ form.preferred_date.errors }}
+      </label>
+      <label class="wide">
+        <span>Message</span>
+        {{ form.message }}
+        {{ form.message.errors }}
+      </label>
+    </div>
+    <button class="button button-primary" type="submit">Send Request</button>
+  </form>
+</section>
+{% endblock %}
