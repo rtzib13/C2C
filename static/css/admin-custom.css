@@ -1,0 +1,52 @@
+/* Custom admin styles to match site palette and improve contrast */
+:root {
+  --c2c-navy: #07133a;
+  --c2c-pink: #e21e8b;
+  --c2c-purple: #7b3cff;
+  --c2c-ink: #101a33;
+}
+
+/* Header */
+#header {
+  background: linear-gradient(90deg, var(--c2c-navy), #0b1a3b) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.04) !important;
+}
+
+#header h1, #user-tools a, #header .breadcrumb, #header .nav {
+  color: #fff !important;
+}
+
+/* Brand/logo area */
+.branding { color: #fff !important; }
+
+/* Main panels */
+.module, .grp-module, .app-list, .model-addlink, .dashboard {
+  background: #ffffff !important;
+  box-shadow: 0 12px 36px rgba(10,16,40,0.08) !important;
+  border-radius: 10px !important;
+}
+
+/* Accent links and add buttons */
+a, .model-addlink, .addlink {
+  color: var(--c2c-pink) !important;
+}
+
+.submit-row input, .submit-row .button, .button {
+  background: linear-gradient(90deg, var(--c2c-pink), var(--c2c-purple)) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+/* Improve table headers contrast */
+table.change-list thead th {
+  background: #f6f7fb !important;
+  color: var(--c2c-ink) !important;
+}
+
+/* Narrow the content area slightly for readability */
+#content-main { max-width: 1100px; }
+
+/* Small responsive tweaks */
+@media (max-width: 900px) {
+  #content-main { max-width: 100%; padding: 0 1rem; }
+}
