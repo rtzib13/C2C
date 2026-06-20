@@ -22,6 +22,9 @@
         <a href="{% url 'about' %}">About</a>
         <a href="{% url 'careers' %}">Careers</a>
         <a href="{% url 'contact' %}">Contact</a>
+        {% if user.is_staff %}
+          <a href="{% url 'admin:index' %}">Admin</a>
+        {% endif %}
       </nav>
       <a class="button nav-cta ripple" href="{% url 'contact' %}">Get a Quote</a>
     </div>
