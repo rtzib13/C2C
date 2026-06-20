@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -59,10 +60,10 @@ WSGI_APPLICATION = "c2c_site.wsgi.application"
 ASGI_APPLICATION = "c2c_site.asgi.application"
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    # Use DATABASE_URL if provided (Postgres, etc.). Fallback to SQLite for local dev.
+    "default": dj_database_url.parse(
+        os.getenv("DATABASE_URL", f"sqlite:///{str(BASE_DIR / 'db.sqlite3')}")
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
