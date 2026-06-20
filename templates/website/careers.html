@@ -8,51 +8,59 @@
 </section>
 
 <section class="container form-shell">
+  <div class="form-top-row">
+    <div>
+      <h2 class="sr-only">Apply</h2>
+    </div>
+    <div class="lang-toggle-wrap">
+      <button id="lang-toggle" class="button" type="button">Español</button>
+    </div>
+  </div>
   <form method="post" class="quote-form">
     {% csrf_token %}
     {{ form.non_field_errors }}
     <div class="form-grid">
       <label>
-        <span>First name</span>
+        <span data-i18n="first_name_label">First name</span>
         {{ form.first_name }}
         {{ form.first_name.errors }}
       </label>
       <label>
-        <span>Last name</span>
+        <span data-i18n="last_name_label">Last name</span>
         {{ form.last_name }}
         {{ form.last_name.errors }}
       </label>
       <label>
-        <span>Email</span>
+        <span data-i18n="email_label">Email</span>
         {{ form.email }}
         {{ form.email.errors }}
       </label>
       <label>
-        <span>Phone</span>
+        <span data-i18n="phone_label">Phone</span>
         {{ form.phone }}
         {{ form.phone.errors }}
       </label>
       <label class="wide">
-        <span>Position applying for</span>
+        <span data-i18n="position_label">Position applying for</span>
         {{ form.position }}
         {{ form.position.errors }}
       </label>
       <label class="wide">
-        <span>Previous experience</span>
+        <span data-i18n="previous_experience_label">Previous experience</span>
         {{ form.previous_experience }}
         {{ form.previous_experience.errors }}
       </label>
       <label class="wide">
-        <span>Why do you want to join our team?</span>
+        <span data-i18n="motivation_label">Why do you want to join our team?</span>
         {{ form.motivation }}
         {{ form.motivation.errors }}
       </label>
       <label class="wide checkbox-row">
         {{ form.flexible_hours }}
-        <span>I can work flexible hours, including weekends if needed.</span>
+        <span data-i18n="flexible_hours_label">I can work flexible hours, including weekends if needed.</span>
       </label>
     </div>
-    <button class="button button-primary" type="submit">Submit Application</button>
+    <button class="button button-primary" type="submit" data-i18n="submit_button">Submit Application</button>
   </form>
 </section>
 
@@ -74,4 +82,5 @@
     <p>We provide on-the-job training and opportunities for advancement so you can grow your skills and career with us.</p>
   </article>
 </section>
+<script src="{% static 'js/i18n.js' %}"></script>
 {% endblock %}
