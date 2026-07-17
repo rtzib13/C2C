@@ -190,7 +190,6 @@ body {
   text-align: center;
   background-image:
     linear-gradient(90deg, rgba(6, 14, 40, 0.87), rgba(10, 24, 66, 0.8)),
-    url('/static/images/hero.jpg'),
     url("https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=1800&q=80");
   background-size: cover, cover, cover;
   background-position: center, center, center;
