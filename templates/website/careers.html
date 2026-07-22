@@ -17,7 +17,7 @@
       <button id="lang-toggle" class="button" type="button">Español</button>
     </div>
   </div>
-  <form method="post" class="quote-form">
+  <form method="post" enctype="multipart/form-data" class="quote-form">
     {% csrf_token %}
     {{ form.non_field_errors }}
     <div class="form-grid">
@@ -55,6 +55,11 @@
         <span data-i18n="motivation_label">Why do you want to join our team?</span>
         {{ form.motivation }}
         {{ form.motivation.errors }}
+      </label>
+      <label class="wide">
+        <span>Resume <small>(optional; PDF, DOC, or DOCX, up to 5 MB)</small></span>
+        {{ form.resume }}
+        {{ form.resume.errors }}
       </label>
       <label class="wide checkbox-row">
         {{ form.flexible_hours }}

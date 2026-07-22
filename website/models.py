@@ -1,3 +1,4 @@
+from django.core.validators import FileExtensionValidator
 from django.db import models
 
 
@@ -42,6 +43,12 @@ class CareerApplication(models.Model):
     previous_experience = models.TextField(blank=True)
     motivation = models.TextField()
     flexible_hours = models.BooleanField(default=False)
+    resume = models.FileField(
+        upload_to="resumes/%Y/%m/",
+        blank=True,
+        validators=[FileExtensionValidator(allowed_extensions=["pdf", "doc", "docx"])],
+        help_text="Optional. PDF, DOC, or DOCX; maximum 5 MB.",
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

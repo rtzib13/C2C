@@ -8,7 +8,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Debug mode controlled by environment. Default to False in production.
-DEBUG = os.getenv("DEBUG", "true").lower() == "true"
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 # SECRET_KEY must come from the environment in production. During local
 # development DEBUG=True will use a temporary insecure key for convenience.
@@ -85,6 +85,10 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+# Uploaded resumes are stored separately from static assets.
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 # Use WhiteNoise to serve static files efficiently in simple deployments.
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
@@ -96,5 +100,5 @@ EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "Cummings2Clean@gmail.com")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "true").lower() == "true"
-
+EMAIL_TIMEOUT = int(os.getenv("EMAIL_TIMEOUT", "10"))
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

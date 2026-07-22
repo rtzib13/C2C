@@ -12,11 +12,11 @@ logger = logging.getLogger(__name__)
 
 def _notify_owner(subject, body):
     send_mail(
-        subject=subject,
-        message=body,
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=[settings.CONTACT_NOTIFICATION_EMAIL],
-        fail_silently=False,
+        subject,
+        body ,
+        settings.DEFAULT_FROM_EMAIL,
+        [settings.EMAIL_HOST_USER],
+        fail_silently=True,
     )
 
 
@@ -40,7 +40,7 @@ def services(request):
 
 def careers(request):
     if request.method == "POST":
-        form = CareerApplicationForm(request.POST)
+        form = CareerApplicationForm(request.POST, request.FILES)
         if form.is_valid():
             application = form.save()
             try:
@@ -52,6 +52,7 @@ def careers(request):
                         f"Email: {application.email}\n"
                         f"Phone: {application.phone}\n"
                         f"Flexible Hours: {'Yes' if application.flexible_hours else 'No'}\n\n"
+                        f"Resume: {application.resume.name if application.resume else 'Not provided'}\n\n"
                         f"Previous Experience:\n{application.previous_experience or 'N/A'}\n\n"
                         f"Motivation:\n{application.motivation}"
                     ),

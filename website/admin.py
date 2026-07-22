@@ -12,6 +12,10 @@ class QuoteRequestAdmin(admin.ModelAdmin):
 
 @admin.register(CareerApplication)
 class CareerApplicationAdmin(admin.ModelAdmin):
-    list_display = ("first_name", "last_name", "position", "email", "phone", "flexible_hours", "created_at")
+    list_display = ("first_name", "last_name", "position", "email", "phone", "has_resume", "flexible_hours", "created_at")
     list_filter = ("position", "flexible_hours", "created_at")
     search_fields = ("first_name", "last_name", "email", "phone")
+
+    @admin.display(boolean=True, description="Resume")
+    def has_resume(self, obj):
+        return bool(obj.resume)

@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from .models import CareerApplication, QuoteRequest
 
@@ -31,6 +32,8 @@ class QuoteRequestForm(forms.ModelForm):
 
 
 class CareerApplicationForm(forms.ModelForm):
+    MAX_RESUME_SIZE = 5 * 1024 * 1024
+
     class Meta:
         model = CareerApplication
         fields = [
@@ -42,6 +45,7 @@ class CareerApplicationForm(forms.ModelForm):
             "previous_experience",
             "motivation",
             "flexible_hours",
+            "resume",
         ]
         widgets = {
             "first_name": forms.TextInput(attrs={"placeholder": "First name"}),
@@ -52,4 +56,11 @@ class CareerApplicationForm(forms.ModelForm):
                 attrs={"rows": 4, "placeholder": "Describe your cleaning experience"}
             ),
             "motivation": forms.Textarea(attrs={"rows": 4, "placeholder": "Why do you want to join our team?"}),
+            "resume": forms.ClearableFileInput(attrs={"accept": ".pdf,.doc,.docx"}),
         }
+
+    def clean_resume(self):
+        resume = self.cleaned_data.get("resume")
+        if resume and resume.size > self.MAX_RESUME_SIZE:
+            raise ValidationError("Please upload a resume smaller than 5 MB.")
+        return resume
