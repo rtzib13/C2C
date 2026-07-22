@@ -62,10 +62,7 @@ def careers(request):
                 messages.success(request, "Application submitted successfully. Our team will review it soon.")
             except Exception as exc:
                 logger.exception("Career application email failed: %s", exc)
-                messages.warning(
-                    request,
-                    "Application was saved, but email delivery is not configured yet. Please verify SMTP settings.",
-                )
+                messages.success(request, "Application received.")
             return redirect("careers")
     else:
         form = CareerApplicationForm()
