@@ -11,13 +11,15 @@ logger = logging.getLogger(__name__)
 
 
 def _notify_owner(subject, body):
-    send_mail(
-        subject,
-        body ,
-        settings.DEFAULT_FROM_EMAIL,
-        [settings.EMAIL_HOST_USER],
-        fail_silently=True,
+    sent_count = send_mail(
+        subject=subject,
+        message=body,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        recipient_list=[settings.CONTACT_NOTIFICATION_EMAIL],
+        fail_silently=False,
     )
+    if sent_count != 1:
+        raise RuntimeError("Notification email was not accepted for delivery.")
 
 
 def home(request):
