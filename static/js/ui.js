@@ -1,5 +1,23 @@
 // UI micro-interactions: button ripple, logo subtle animation
 document.addEventListener('DOMContentLoaded', function () {
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function () {
+      const isOpen = navLinks.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      navToggle.querySelector('.sr-only').textContent = isOpen ? 'Close navigation' : 'Open navigation';
+    });
+
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.querySelector('.sr-only').textContent = 'Open navigation';
+      });
+    });
+  }
+
   // ripple effect for any element with .ripple
   document.querySelectorAll('.ripple').forEach(function (el) {
     el.addEventListener('pointerdown', function (ev) {

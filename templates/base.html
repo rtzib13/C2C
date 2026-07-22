@@ -17,7 +17,11 @@
       <img class="site-logo" src="{% static 'images/logo.png' %}" alt="Cummings 2 Clean logo">
     </a>
     <div class="container nav-shell">
-      <nav class="nav-links">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="sr-only">Open navigation</span>
+        <span aria-hidden="true">☰</span>
+      </button>
+      <nav id="primary-navigation" class="nav-links">
         <a href="{% url 'services' %}">Services</a>
         <a href="{% url 'about' %}">About</a>
         <a href="{% url 'careers' %}">Careers</a>
