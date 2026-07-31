@@ -66,7 +66,7 @@ def careers(request):
                         f"Email: {application.email}\n"
                         f"Phone: {application.phone}\n"
                         f"Flexible Hours: {'Yes' if application.flexible_hours else 'No'}\n\n"
-                        f"Resume: {application.resume.name if application.resume else 'Not provided'}\n\n"
+                        f"Resume: {'Uploaded — view securely in Django Admin' if application.resume else 'Not provided'}\n\n"
                         f"Previous Experience:\n{application.previous_experience or 'N/A'}\n\n"
                         f"Motivation:\n{application.motivation}"
                     ),
@@ -112,7 +112,7 @@ def contact(request):
                 logger.exception("Quote notification email failed: %s", exc)
                 messages.warning(
                     request,
-                    "Your request was saved, but email delivery is not configured yet. Please verify SMTP settings.",
+                    "Your request was submitted.",
                 )
             return redirect("contact")
     else:

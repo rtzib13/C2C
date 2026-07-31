@@ -44,8 +44,11 @@ class CareerApplication(models.Model):
     previous_experience = models.TextField(blank=True)
     motivation = models.TextField()
     flexible_hours = models.BooleanField(default=False)
-    resume = models.FileField(
-        upload_to="resumes/%Y/%m/",
+    resume = CloudinaryField(
+        "resume",
+        resource_type="raw",
+        type="private",
+        folder="c2c/resumes",
         blank=True,
         validators=[FileExtensionValidator(allowed_extensions=["pdf", "doc", "docx"])],
         help_text="Optional. PDF, DOC, or DOCX; maximum 5 MB.",
