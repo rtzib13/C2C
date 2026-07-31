@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import CareerApplication, QuoteRequest
+from .models import CareerApplication, GallerySession, QuoteRequest
 
 
 @admin.register(QuoteRequest)
@@ -19,3 +19,17 @@ class CareerApplicationAdmin(admin.ModelAdmin):
     @admin.display(boolean=True, description="Resume")
     def has_resume(self, obj):
         return bool(obj.resume)
+
+
+@admin.register(GallerySession)
+class GallerySessionAdmin(admin.ModelAdmin):
+    list_display = ("title", "display_order", "is_published", "created_at")
+    list_editable = ("display_order", "is_published")
+    list_filter = ("is_published", "created_at")
+    search_fields = ("title", "description")
+    readonly_fields = ("created_at",)
+    fieldsets = (
+        ("Session details", {"fields": ("title", "description", "display_order", "is_published")} ),
+        ("Before and after photos", {"fields": ("before_image", "after_image")} ),
+        ("Record", {"fields": ("created_at",)}),
+    )

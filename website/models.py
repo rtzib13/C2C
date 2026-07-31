@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
@@ -56,3 +57,23 @@ class CareerApplication(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.get_position_display()}"
+
+
+class GallerySession(models.Model):
+    """A published before-and-after pair from a completed cleaning session."""
+
+    title = models.CharField(max_length=120)
+    description = models.TextField(blank=True)
+    before_image = CloudinaryField("image", folder="c2c/gallery/before")
+    after_image = CloudinaryField("image", folder="c2c/gallery/after")
+    display_order = models.PositiveIntegerField(default=0)
+    is_published = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["display_order", "-created_at"]
+        verbose_name = "gallery session"
+        verbose_name_plural = "gallery sessions"
+
+    def __str__(self):
+        return self.title

@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 
 from .forms import CareerApplicationForm, QuoteRequestForm
+from .models import GallerySession
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +39,17 @@ def about(request):
 
 def services(request):
     return render(request, "website/services.html", {"page_title": "Services | Cummings 2 Clean"})
+
+
+def gallery(request):
+    return render(
+        request,
+        "website/gallery.html",
+        {
+            "page_title": "Before & After Gallery | Cummings 2 Clean",
+            "gallery_sessions": GallerySession.objects.filter(is_published=True),
+        },
+    )
 
 
 def careers(request):

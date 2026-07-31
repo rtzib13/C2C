@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container page-intro">
+  <p class="eyebrow">Our work</p>
+  <h1>Before &amp; After Cleaning Results</h1>
+  <p>See the care and attention our team brings to every space.</p>
+</section>
+
+<section class="container gallery-grid">
+  {% for session in gallery_sessions %}
+    <article class="gallery-card">
+      <div class="gallery-images">
+        <figure>
+          <img src="{{ session.before_image.url }}" alt="Before cleaning: {{ session.title }}" loading="lazy">
+          <figcaption>Before</figcaption>
+        </figure>
+        <figure>
+          <img src="{{ session.after_image.url }}" alt="After cleaning: {{ session.title }}" loading="lazy">
+          <figcaption>After</figcaption>
+        </figure>
+      </div>
+      <div class="gallery-card-copy">
+        <h2>{{ session.title }}</h2>
+        {% if session.description %}<p>{{ session.description }}</p>{% endif %}
+      </div>
+    </article>
+  {% empty %}
+    <div class="gallery-empty">
+      <h2>Fresh results are coming soon.</h2>
+      <p>Check back to see recent before-and-after cleaning sessions.</p>
+    </div>
+  {% endfor %}
+</section>
+{% endblock %}
