@@ -6,9 +6,26 @@ from .models import CareerApplication, GallerySession, QuoteRequest
 
 @admin.register(QuoteRequest)
 class QuoteRequestAdmin(admin.ModelAdmin):
-    list_display = ("full_name", "service_type", "email", "phone", "created_at")
-    list_filter = ("service_type", "created_at")
+    list_display = ("full_name", "property_type", "service_type", "email", "phone", "created_at")
+    list_filter = ("property_type", "service_type", "created_at")
     search_fields = ("full_name", "email", "phone", "address")
+    readonly_fields = ("checklist_summary", "created_at")
+    fields = (
+        "full_name",
+        "email",
+        "phone",
+        "property_type",
+        "service_type",
+        "address",
+        "preferred_date",
+        "message",
+        "checklist_summary",
+        "created_at",
+    )
+
+    @admin.display(description="Requested checklist items")
+    def checklist_summary(self, obj):
+        return obj.checklist_display()
 
 
 @admin.register(CareerApplication)

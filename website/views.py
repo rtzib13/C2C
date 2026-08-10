@@ -99,11 +99,13 @@ def contact(request):
                     subject=f"New Quote Request: {quote.full_name}",
                     body=(
                         f"Service: {quote.get_service_type_display()}\n"
+                        f"Property Type: {quote.get_property_type_display()}\n"
                         f"Name: {quote.full_name}\n"
                         f"Email: {quote.email}\n"
                         f"Phone: {quote.phone}\n"
                         f"Address: {quote.address}\n"
                         f"Preferred Date: {quote.preferred_date or 'Not provided'}\n\n"
+                        f"Requested Areas / Tasks:\n{quote.checklist_display()}\n\n"
                         f"Message:\n{quote.message or 'N/A'}"
                     ),
                 )

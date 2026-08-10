@@ -480,6 +480,63 @@ textarea:focus {
   box-sizing: border-box;
 }
 
+.property-choice,
+.checklist-panel {
+  border: 1px solid rgba(123, 60, 255, 0.18);
+  border-radius: 12px;
+  padding: 1.15rem;
+  background: linear-gradient(135deg, rgba(123, 60, 255, 0.05), rgba(226, 30, 139, 0.04));
+}
+
+.property-choice legend,
+.checklist-panel h2 {
+  padding: 0;
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.property-choice > div,
+.checklist-options > div {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.9rem;
+}
+
+.property-choice label,
+.checklist-options label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(16, 26, 51, 0.1);
+  border-radius: 8px;
+  background: var(--white);
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.property-choice input,
+.checklist-options input {
+  width: 1.2rem;
+  min-width: 1.2rem;
+  min-height: 1.2rem;
+  margin-top: 0.05rem;
+  accent-color: var(--purple);
+}
+
+.checklist-panel > p {
+  margin: 0.45rem 0 0;
+  color: var(--copy);
+  line-height: 1.5;
+}
+
+.checklist-panel[hidden] {
+  display: none;
+}
+
 .site-footer {
   background: var(--navy);
   padding: 2.5rem 0;
@@ -959,6 +1016,11 @@ textarea:focus {
   .checkbox-row {
     align-items: flex-start;
     line-height: 1.45;
+  }
+
+  .property-choice,
+  .checklist-panel {
+    padding: 1rem;
   }
 
   .checkbox-row input[type="checkbox"] {

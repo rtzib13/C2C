@@ -27,6 +27,11 @@
         {{ form.phone }}
         {{ form.phone.errors }}
       </label>
+      <fieldset class="wide property-choice">
+        <legend>What type of space needs cleaning?</legend>
+        {{ form.property_type }}
+        {{ form.property_type.errors }}
+      </fieldset>
       <label>
         <span>Service type</span>
         {{ form.service_type }}
@@ -42,8 +47,20 @@
         {{ form.preferred_date }}
         {{ form.preferred_date.errors }}
       </label>
+      <section class="wide checklist-panel" data-checklist="residential">
+        <h2>Home Cleaning Checklist</h2>
+        <p>Choose the rooms and services you would like us to include.</p>
+        <div class="checklist-options">{{ form.residential_checklist }}</div>
+        {{ form.residential_checklist.errors }}
+      </section>
+      <section class="wide checklist-panel" data-checklist="commercial" hidden>
+        <h2>Business Cleaning Checklist</h2>
+        <p>Choose the spaces and services you would like us to include.</p>
+        <div class="checklist-options">{{ form.commercial_checklist }}</div>
+        {{ form.commercial_checklist.errors }}
+      </section>
       <label class="wide">
-        <span>Message</span>
+        <span>Special requests or details</span>
         {{ form.message }}
         {{ form.message.errors }}
       </label>
@@ -51,4 +68,27 @@
     <button class="button button-primary" type="submit">Send Request</button>
   </form>
 </section>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const propertyInputs = document.querySelectorAll('input[name="property_type"]');
+    const panels = document.querySelectorAll("[data-checklist]");
+
+    function updateChecklist() {
+      const selected = document.querySelector('input[name="property_type"]:checked');
+      const propertyType = selected ? selected.value : "residential";
+      panels.forEach(function (panel) {
+        const isActive = panel.dataset.checklist === propertyType;
+        panel.hidden = !isActive;
+        panel.querySelectorAll('input[type="checkbox"]').forEach(function (input) {
+          input.disabled = !isActive;
+        });
+      });
+    }
+
+    propertyInputs.forEach(function (input) {
+      input.addEventListener("change", updateChecklist);
+    });
+    updateChecklist();
+  });
+</script>
 {% endblock %}

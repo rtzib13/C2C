@@ -5,6 +5,21 @@ from .models import CareerApplication, QuoteRequest
 
 
 class QuoteRequestForm(forms.ModelForm):
+    property_type = forms.ChoiceField(
+        choices=QuoteRequest.PROPERTY_TYPE_CHOICES,
+        initial="residential",
+        widget=forms.RadioSelect,
+    )
+    residential_checklist = forms.MultipleChoiceField(
+        choices=QuoteRequest.RESIDENTIAL_CHECKLIST_CHOICES,
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+    commercial_checklist = forms.MultipleChoiceField(
+        choices=QuoteRequest.COMMERCIAL_CHECKLIST_CHOICES,
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
     preferred_date = forms.DateField(
         required=False,
         widget=forms.DateInput(attrs={"type": "date"}),
@@ -17,6 +32,7 @@ class QuoteRequestForm(forms.ModelForm):
             "full_name",
             "email",
             "phone",
+            "property_type",
             "service_type",
             "address",
             "preferred_date",
@@ -29,6 +45,21 @@ class QuoteRequestForm(forms.ModelForm):
             "address": forms.TextInput(attrs={"placeholder": "Service address"}),
             "message": forms.Textarea(attrs={"rows": 5, "placeholder": "Tell us what you need cleaned"}),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data.get("property_type") == "commercial":
+            cleaned_data["selected_checklist"] = cleaned_data.get("commercial_checklist", [])
+        else:
+            cleaned_data["selected_checklist"] = cleaned_data.get("residential_checklist", [])
+        return cleaned_data
+
+    def save(self, commit=True):
+        quote = super().save(commit=False)
+        quote.checklist_items = self.cleaned_data.get("selected_checklist", [])
+        if commit:
+            quote.save()
+        return quote
 
 
 class CareerApplicationForm(forms.ModelForm):
